@@ -1,0 +1,82 @@
+{
+	"name": "dataflowsource",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dataflowsource",
+						"type": "DatasetReference"
+					},
+					"name": "sourcejson"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_json",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1"
+				},
+				{
+					"name": "split1"
+				},
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Item_Fat_Content as string,",
+				"          Item_Identifier as string,",
+				"          Item_MRP as double,",
+				"          Item_Outlet_Sales as double,",
+				"          Item_Type as string,",
+				"          Item_Visibility as double,",
+				"          Item_Weight as double,",
+				"          Outlet_Establishment_Year as short,",
+				"          Outlet_Identifier as string,",
+				"          Outlet_Location_Type as string,",
+				"          Outlet_Size as string,",
+				"          Outlet_Type as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> sourcejson",
+				"sourcejson select(mapColumn(",
+				"          Item_Fat_Content,",
+				"          Item_Identifier,",
+				"          Item_MRP,",
+				"          Item_Outlet_Sales,",
+				"          Item_Visibility,",
+				"          Item_Weight,",
+				"          Outlet_Establishment_Year,",
+				"          Outlet_Identifier,",
+				"          Outlet_Location_Type,",
+				"          Outlet_Size",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 split(Item_Fat_Content =='Low Fat',",
+				"     Item_Fat_Content=='Regular',",
+				"     disjoint: false) ~> split1@(LowFat, RegularFat, HighFat)",
+				"split1@HighFat derive(Item_Fat_Content = ERROR_FUNCTION('')) ~> derivedColumn1",
+				"split1@LowFat sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}
