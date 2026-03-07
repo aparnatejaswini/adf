@@ -1,0 +1,68 @@
+{
+	"name": "ds_dest_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ds_datalake",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"ds_file_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().ds_file_name",
+					"type": "Expression"
+				},
+				"folderPath": "jsonFiles",
+				"fileSystem": "destination"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Item_Identifier": {
+					"type": "string"
+				},
+				"Item_Weight": {
+					"type": "string"
+				},
+				"Item_Fat_Content": {
+					"type": "string"
+				},
+				"Item_Visibility": {
+					"type": "string"
+				},
+				"Item_Type": {
+					"type": "string"
+				},
+				"Item_MRP": {
+					"type": "string"
+				},
+				"Outlet_Identifier": {
+					"type": "string"
+				},
+				"Outlet_Establishment_Year": {
+					"type": "string"
+				},
+				"Outlet_Size": {
+					"type": "string"
+				},
+				"Outlet_Location_Type": {
+					"type": "string"
+				},
+				"Outlet_Type": {
+					"type": "string"
+				},
+				"Item_Outlet_Sales": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

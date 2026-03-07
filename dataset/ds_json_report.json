@@ -1,0 +1,27 @@
+{
+	"name": "ds_json_report",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ds_datalake",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"dsink_file_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().dsink_file_name",
+					"type": "Expression"
+				},
+				"fileSystem": "reporting"
+			}
+		},
+		"schema": {}
+	}
+}
