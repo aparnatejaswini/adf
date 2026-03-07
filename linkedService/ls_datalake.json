@@ -1,0 +1,10 @@
+{
+	"name": "ls_datalake",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://rgadfap.dfs.core.windows.net/"
+		}
+	}
+}
