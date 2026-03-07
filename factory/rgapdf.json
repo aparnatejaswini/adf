@@ -1,0 +1,9 @@
+{
+	"name": "rgapdf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "5c68b502-6a00-41b5-bcd4-3826918f44a5",
+		"tenantId": "13a4918b-9f03-4c37-91f2-b44779f1e6f8"
+	}
+}
