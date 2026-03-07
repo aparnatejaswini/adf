@@ -27,9 +27,6 @@
 				},
 				{
 					"name": "split1"
-				},
-				{
-					"name": "derivedColumn1"
 				}
 			],
 			"scriptLines": [
@@ -68,7 +65,6 @@
 				"select1 split(Item_Fat_Content =='Low Fat',",
 				"     Item_Fat_Content=='Regular',",
 				"     disjoint: false) ~> split1@(LowFat, RegularFat, HighFat)",
-				"split1@HighFat derive(Item_Fat_Content = ERROR_FUNCTION('')) ~> derivedColumn1",
 				"split1@LowFat sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
