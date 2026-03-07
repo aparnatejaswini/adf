@@ -1,0 +1,46 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"parameters": {
+			"pip_file_name": {
+				"type": "string"
+			},
+			"pip_schema": {
+				"type": "object",
+				"defaultValue": {
+					"type": "TabularTranslator",
+					"mappings": [
+						{
+							"source": {
+								"name": "airline_id",
+								"type": "String"
+							},
+							"sink": {
+								"path": "$['airline_id']"
+							}
+						},
+						{
+							"source": {
+								"name": "airline_name",
+								"type": "String"
+							},
+							"sink": {
+								"path": "$['airline_name']"
+							}
+						},
+						{
+							"source": {
+								"name": "country",
+								"type": "String"
+							},
+							"sink": {
+								"path": "$['country']"
+							}
+						}
+					]
+				}
+			}
+		},
+		"annotations": []
+	}
+}
