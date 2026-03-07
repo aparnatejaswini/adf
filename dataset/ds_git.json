@@ -1,0 +1,25 @@
+{
+	"name": "ds_git",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_git",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "anshlambagit/Azure-Data-Factory/main/Raw%20Data/Fact_Sales_1.csv",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
