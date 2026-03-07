@@ -1,0 +1,6 @@
+{
+	"name": "ap-selfhosted",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
